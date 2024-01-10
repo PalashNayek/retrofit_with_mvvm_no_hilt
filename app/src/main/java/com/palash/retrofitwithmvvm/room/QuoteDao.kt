@@ -9,7 +9,7 @@ import com.palash.retrofitwithmvvm.models.Result
 interface QuoteDao {
 
     @Insert
-    suspend fun add(quotes : List<Result>)
+    suspend fun addQuotes(quotes : List<Result>)
 
     @Query("SELECT * FROM quotes_tb")
     suspend fun getQuotes() : List<Result>

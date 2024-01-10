@@ -24,7 +24,7 @@ class QuoteRepository(
             if (result.body() != null){
                 quoteMutableData.postValue(result.body())
                 //add value in database
-                quoteDatabase.quoteDao().add(result.body()!!.results)
+                quoteDatabase.quoteDao().addQuotes(result.body()!!.results)
 
             }
         }else{
@@ -32,5 +32,14 @@ class QuoteRepository(
             val quoteListResponse = QuoteListResponse(1,1,1, quote,1,1)
             quoteMutableData.postValue(quoteListResponse)
         }
+    }
+
+    suspend fun getQuotesBackground(){
+        val randomNumber = (Math.random() * 10).toInt()
+        val result = quoteAPI.getQuoteListResponse(randomNumber)
+        if (result.body()!=null){
+            quoteDatabase.quoteDao().addQuotes(result.body()!!.results)
+        }
+
     }
 }
