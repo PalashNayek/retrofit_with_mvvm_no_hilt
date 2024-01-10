@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.palash.retrofitwithmvvm.models.QuoteListResponse
 import com.palash.retrofitwithmvvm.repository.QuoteRepository
+import com.palash.retrofitwithmvvm.repository.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -16,6 +17,6 @@ class MainViewModel(private val quoteRepository: QuoteRepository) : ViewModel() 
         }
     }
 
-    val quoteLiveDataFromViewModel : LiveData<QuoteListResponse> get() = quoteRepository.quoteResultLiveDataRepository
+    val quoteLiveDataFromViewModel : LiveData<Response<QuoteListResponse>> get() = quoteRepository.quoteResultLiveDataRepository
 
 }
